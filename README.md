@@ -1,82 +1,97 @@
-# AWS MCP: Model Context Protocol trên AWS
+# AWS MCP: Model Context Protocol on AWS
 
-![AWS Logo](https://www.telecomreview.com/images/stories/2023/09/Amazon_and_Anthropic.jpg)
+[![GitHub Stars](https://img.shields.io/github/stars/ihatesea69/AWS-MCP?style=social)](https://github.com/ihatesea69/AWS-MCP)
+[![GitHub Forks](https://img.shields.io/github/forks/ihatesea69/AWS-MCP?style=social)](https://github.com/ihatesea69/AWS-MCP/fork)
+[![GitHub Issues](https://img.shields.io/github/issues/ihatesea69/AWS-MCP)](https://github.com/ihatesea69/AWS-MCP/issues)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green?logo=node.js)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0+-blue?logo=typescript)](https://www.typescriptlang.org/)
 
-<a href="https://glama.ai/mcp/servers/@ihatesea69/AWS-MCP">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@ihatesea69/AWS-MCP/badge" alt="AWS Server MCP server" />
-</a>
+## Introduction to Model Context Protocol (MCP)
 
-## Giới thiệu về Model Context Protocol (MCP)
-### Bắt đầu với MCP
+### Getting Started with MCP
 
-MCP (Model Context Protocol) là một giao thức mở chuẩn hóa cách các ứng dụng cung cấp ngữ cảnh cho các mô hình ngôn ngữ lớn (LLMs). Hãy tưởng tượng MCP giống như một cổng USB-C cho các ứng dụng AI. Cũng như USB-C cung cấp một phương thức chuẩn để kết nối thiết bị với các phụ kiện khác nhau, MCP cung cấp một phương thức chuẩn để kết nối mô hình AI với các nguồn dữ liệu và công cụ khác nhau.
+MCP (Model Context Protocol) is an open protocol that standardizes how applications provide context to large language models (LLMs). Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standard method for connecting devices to various accessories, MCP provides a standard method for connecting AI models to different data sources and tools.
 
-### Tại sao nên sử dụng MCP?
-MCP giúp xây dựng các agent và quy trình tự động phức tạp dựa trên LLMs. Các mô hình LLM thường cần tích hợp với dữ liệu và công cụ, và MCP cung cấp:
-- **Danh sách ngày càng tăng các tích hợp sẵn có** giúp LLM của bạn kết nối trực tiếp.
-- **Khả năng linh hoạt** để chuyển đổi giữa các nhà cung cấp LLM.
-- **Các phương pháp bảo mật dữ liệu tốt nhất** trong hạ tầng của bạn.
+### Why Use MCP?
 
-### Kiến trúc tổng quát
-Ở mức cơ bản, MCP tuân theo kiến trúc client-server, nơi một ứng dụng chủ có thể kết nối với nhiều máy chủ khác nhau:
+MCP enables building complex agents and automated workflows based on LLMs. LLMs often need to integrate with data and tools, and MCP provides:
 
-![AWS Logo](https://quickstartgenai.com/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ft2bsu7sk%2Fproduction%2Fd0d1f7922931519f74e92737ae860809d8a45784-563x384.png&w=1920&q=75)
+- **A growing list of ready-to-use integrations** that allow your LLM to connect directly.
+- **Flexibility** to switch between LLM providers.
+- **Best data security practices** within your infrastructure.
 
-- **MCP Hosts**: Các chương trình như Claude Desktop, IDEs hoặc công cụ AI muốn truy cập dữ liệu thông qua MCP.
-- **MCP Clients**: Các client giao thức duy trì kết nối 1:1 với server.
-- **MCP Servers**: Các chương trình nhẹ, mỗi chương trình cung cấp các khả năng cụ thể thông qua Model Context Protocol.
-- **Local Data Sources**: Các tệp, cơ sở dữ liệu và dịch vụ trên máy tính của bạn mà MCP server có thể truy cập an toàn.
-- **Remote Services**: Các hệ thống bên ngoài có sẵn trên Internet (ví dụ: thông qua API) mà MCP server có thể kết nối.
+### General Architecture
+
+At its core, MCP follows a client-server architecture where a host application can connect to multiple servers:
+
+- **MCP Hosts**: Programs like Claude Desktop, IDEs, or AI tools that want to access data through MCP.
+- **MCP Clients**: Protocol clients that maintain 1:1 connections with servers.
+- **MCP Servers**: Lightweight programs, each providing specific capabilities through the Model Context Protocol.
+- **Local Data Sources**: Files, databases, and services on your computer that MCP servers can securely access.
+- **Remote Services**: External systems available on the Internet (e.g., via APIs) that MCP servers can connect to.
 
 ---
 
-## Giới thiệu về AWS MCP
-AWS MCP (Model Context Protocol) là một máy chủ cho phép các trợ lý AI như Claude tương tác với môi trường AWS thông qua ngôn ngữ tự nhiên. Điều này giúp bạn dễ dàng quản lý và truy vấn tài nguyên AWS mà không cần phải sử dụng AWS Console hoặc CLI truyền thống.
+## Introduction to AWS MCP
 
-AWS MCP có thể được coi là một giải pháp thay thế mạnh mẽ cho Amazon Q, mang lại sự linh hoạt và bảo mật cao hơn.
+AWS MCP (Model Context Protocol) is a server that enables AI assistants like Claude to interact with AWS environments through natural language. This makes it easy to manage and query AWS resources without using the traditional AWS Console or CLI.
 
-## Tính năng chính của AWS MCP
--  **Truy vấn và chỉnh sửa tài nguyên AWS bằng ngôn ngữ tự nhiên**
--  **Hỗ trợ nhiều hồ sơ AWS và xác thực SSO**
-- **Hỗ trợ đa vùng AWS**
-- **Quản lý thông tin xác thực an toàn** (Không tiết lộ thông tin xác thực ra bên ngoài, chỉ sử dụng thông tin cục bộ)
-- **Thực thi cục bộ với thông tin đăng nhập AWS của bạn**
+AWS MCP can be considered a powerful alternative to Amazon Q, offering greater flexibility and security.
 
-## Yêu cầu trước khi cài đặt
-Để sử dụng AWS MCP, bạn cần đảm bảo môi trường của bạn có:
+## Key Features
+
+- **Query and modify AWS resources using natural language**
+- **Support for multiple AWS profiles and SSO authentication**
+- **Multi-region AWS support**
+- **Secure credential management** (credentials are never exposed externally, only used locally)
+- **Local execution with your AWS credentials**
+
+## Prerequisites
+
+To use AWS MCP, ensure your environment has:
+
 - **Node.js**
-- **Ứng dụng Claude Desktop**
-- **Thông tin xác thực AWS được cấu hình cục bộ (AWS Configure)** (lưu trong thư mục `~/.aws/`)
+- **Claude Desktop application**
+- **Locally configured AWS credentials (AWS Configure)** (stored in `~/.aws/`)
 
-## Hướng dẫn cài đặt AWS MCP
-### 1. Clone repository
-Trước tiên, bạn cần tải mã nguồn từ GitHub về máy tính của mình:
+## Installation Guide
+
+### 1. Clone the repository
+
+First, download the source code from GitHub to your computer:
+
 ```bash
 git clone https://github.com/ihatesea69/AWS-MCP
 cd aws-mcp
 ```
 
-### 2. Cài đặt dependencies
-Bạn có thể sử dụng `pnpm` hoặc `npm` để cài đặt:
+### 2. Install dependencies
+
+You can use `pnpm` or `npm` to install:
+
 ```bash
 pnpm install
-# hoặc
+# or
 npm install
 ```
 
-## Cấu hình và sử dụng AWS MCP với Claude Desktop
-### 1. Cấu hình trong Claude Desktop
-Mở ứng dụng Claude Desktop, đi tới:
+## Configuration and Usage with Claude Desktop
+
+### 1. Configure in Claude Desktop
+
+Open the Claude Desktop application and navigate to:
+
 ```
 Settings -> Developer -> Edit Config
 ```
 
-Sau đó, thêm mục sau vào tệp `claude_desktop_config.json`:
+Then add the following entry to the `claude_desktop_config.json` file:
+
 ```json
 {
   "mcpServers": {
     "aws": {
-      "command": "npm", // hoặc pnpm
+      "command": "npm", // or pnpm
       "args": [
         "--silent",
         "--prefix",
@@ -87,23 +102,29 @@ Sau đó, thêm mục sau vào tệp `claude_desktop_config.json`:
   }
 }
 ```
-> Lưu ý: Thay thế `/Users/<YOUR USERNAME>/aws-mcp` bằng đường dẫn thực tế tới thư mục dự án của bạn.
 
-### 2. Khởi động lại Claude Desktop
-Chạy dự án của bạn bằng điều hướng (cd) tới thư mục chứa index.ts và chạy lệnh NPM start 
+> Note: Replace `/Users/<YOUR USERNAME>/aws-mcp` with the actual path to your project directory.
 
-Sau khi chỉnh sửa cấu hình, hãy khởi động lại ứng dụng Claude Desktop. Nếu quá trình cài đặt đúng, bạn sẽ thấy thông báo kết nối thành công với MCP.
+### 2. Restart Claude Desktop
 
-### 3. Sử dụng AWS MCP trong Claude
-Bạn có thể bắt đầu sử dụng bằng cách nhập các câu lệnh tự nhiên như:
+Run your project by navigating (cd) to the directory containing index.ts and running the NPM start command.
+
+After editing the configuration, restart the Claude Desktop application. If the installation is correct, you will see a successful connection message with MCP.
+
+### 3. Using AWS MCP in Claude
+
+You can start using it by entering natural language commands such as:
+
 - "List available AWS profiles"
 - "List all EC2 instances in my account"
 - "Show me S3 buckets with their sizes"
 - "What Lambda functions are deployed in us-east-1?"
 - "List all ECS clusters and their services"
 
-## Cấu hình MCP với `nvm`
-Nếu bạn sử dụng Node.js thông qua `nvm`, hãy biên dịch từ mã nguồn trước và thêm cấu hình sau:
+## Configuration with `nvm`
+
+If you use Node.js through `nvm`, compile from source first and add the following configuration:
+
 ```json
 {
   "mcpServers": {
@@ -120,9 +141,13 @@ Nếu bạn sử dụng Node.js thông qua `nvm`, hãy biên dịch từ mã ngu
   }
 }
 ```
-> Lưu ý: Thay thế `<USERNAME>` và `<WORKSPACE_PATH>` bằng đường dẫn thực tế trên hệ thống của bạn.
 
-## Kết luận
-AWS MCP là một công cụ mạnh mẽ cho phép bạn quản lý tài nguyên AWS bằng cách sử dụng trợ lý AI Claude. Với khả năng truy vấn và điều khiển thông qua ngôn ngữ tự nhiên, AWS MCP giúp đơn giản hóa việc quản lý AWS một cách đáng kể. Nếu bạn đang tìm kiếm một giải pháp thay thế cho Amazon Q, AWS MCP là một lựa chọn đáng cân nhắc!
+> Note: Replace `<USERNAME>` and `<WORKSPACE_PATH>` with the actual paths on your system.
 
-Nguon - Credit : https://github.com/RafalWilinski/aws-mcp
+## Conclusion
+
+AWS MCP is a powerful tool that allows you to manage AWS resources using the Claude AI assistant. With the ability to query and control through natural language, AWS MCP significantly simplifies AWS management. If you are looking for an alternative to Amazon Q, AWS MCP is a worthy consideration!
+
+## Credits
+
+Original source: https://github.com/RafalWilinski/aws-mcp
